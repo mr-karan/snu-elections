@@ -1,6 +1,6 @@
 Template.addquestion.events({
     'click #add-question' : function(event){
-    	console.log("FUKING HIERE")
+    	//console.log("FUKING HIERE")
         event.preventDefault();
         var questionText = document.getElementById("questionText").value;
         Meteor.call("addQuestion",questionText,function(error , questionId){
@@ -14,7 +14,7 @@ Template.addquestion.events({
 Questions = new Meteor.Collection("questions");
  
 Template.questions.items = function(){
-    return Questions.find({},{sort:{'submittedOn':-1}});
+    return Questions.find({},{sort:{'yes':-1, 'no':1}});
 };
 
 Template.question.events({
@@ -28,7 +28,7 @@ Template.question.events({
       if(Meteor.userId()){
         var questionId = Session.get('selected_question');
         console.log('updating yes count for questionId '+questionId);
-        Meteor.call("incrementYesVotes",questionId);
+        Meteor.call("incrementYesVotes",questionId, Meteor.userId());
  
       }
     },
@@ -38,7 +38,7 @@ Template.question.events({
       if(Meteor.userId()){
         var questionId = Session.get('selected_question');
         console.log('updating no count for questionId '+questionId);
-        Meteor.call("incrementNoVotes",questionId);
+        Meteor.call("incrementNoVotes",questionId, Meteor.userId());
       }
     }
  });

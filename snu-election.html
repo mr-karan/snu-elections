@@ -48,6 +48,15 @@
   <textarea rows="3" class="input-xxlarge" name="questionText" id="questionText" placeholder="Add Your Question"></textarea>
   <br/>
   <input type="button" class="btn-info add-question" id="add-question" value="Add Question"/>
+
+</template>
+
+<template name="addcomment">
+ 
+  <textarea rows="3" class="input-xxlarge" name="questionText" id="questionText" placeholder="Add Your Comment"></textarea>
+  <br/>
+  <input type="button" class="btn-info add-comment" id="add-comment" value="Add Comment"/>
+
 </template>
 
 <template name="questions">
@@ -60,10 +69,12 @@
 <template name="question">
     <div>
         <p class="lead">
-            {{questionText}}
-            <a class="btn btn-small btn-success yes {{#unless currentUser}}disabled{{/unless}}" href="#"><i class="icon-thumbs-up"></i> Yes {{yes}}</a>
+            
+            <a class="btn btn-small btn-success yes {{#unless currentUser}}disabled{{/unless}}" href="#"><i class="icon-thumbs-up"></i> {{yes}} </a>
  
-            <a class="btn btn-small btn-danger no {{#unless currentUser}}disabled{{/unless}}" href="#"><i class="icon-thumbs-down"></i> No {{no}}</a>
+            <a class="btn btn-small btn-danger no {{#unless currentUser}}disabled{{/unless}}" href="#"><i class="icon-thumbs-down"></i> {{no}} </a>
+
+            {{questionText}}
         </p>
     </div>
 </template>
